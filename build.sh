@@ -1,12 +1,17 @@
 #!/usr/bin/env bash
-# Exit on error
+# Exit immediately on error
 set -o errexit
 
-# Install dependencies
+# Upgrade pip to latest version
+pip install --upgrade pip
+
+# Install Python dependencies from requirements.txt
 pip install -r requirements.txt
 
-# Download NLTK stopwords (required for your app)
+# Download required NLTK data (stopwords)
 python -c "import nltk; nltk.download('stopwords')"
 
-# Collect static files (if any)
-python manage.py collectstatic --no-input
+# (Optional) Add any other build steps needed for your app
+# Example:
+# - Database migrations: `flask db upgrade`
+# - Collect static files: `flask collectstatic --noinput`
